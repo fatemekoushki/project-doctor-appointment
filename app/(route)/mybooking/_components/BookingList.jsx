@@ -1,11 +1,11 @@
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
 import { Calendar, Clock, MapPin } from 'lucide-react'
 import moment from 'moment/moment'
 import Image from 'next/image'
 import React from 'react'
 import CancelAppointment from './CancelAppointment'
-import axiosClient from '@/app/_components/GelobalApi'
-import { toast } from '@/hooks/use-toast'
+import axiosClient from '../../../_components/GelobalApi'
+import { toast } from '../../../../hooks/use-toast'
 import { useMutation, useQueryClient } from 'react-query'
 
 function BookingList({bookingList , expired }) {

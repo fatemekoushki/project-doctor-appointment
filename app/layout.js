@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { ReactQueryProvider } from "./queryProvider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "../components/ui/toaster";
 
 const outfit= Outfit({ subsets: ["latin"] });
 

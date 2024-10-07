@@ -1,7 +1,7 @@
 "use client"
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
+import { Button } from '../../components/ui/button'
+// import { Input } from '@/components/ui/input'
+// import { Search } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import img1 from "../../public/assets/doctors.png";
@@ -14,6 +14,7 @@ import img7 from "../../public/assets/ear.png" ;
 import img8 from "../../public/assets/psychotropic.png"
 import axiosClient from './GelobalApi'
 import Link from 'next/link'
+import SearchComponent from './SearchComponent'
 
 
 
@@ -48,12 +49,9 @@ function CategorySearch() {
             Search <span className='text-primary' >  Doctors</span>
         </h2>
         <h2 className='text-gray-500 text-xl' >search Your Doctor and Book Appointment in One click </h2>
-        <div className="flex w-full mt-3 max-w-sm items-center space-x-2">
-      <Input type="text" placeholder="Search..." />
-      <Button type="submit">
-        <Search className='w-4 h-4 mr-2' />
-        Search
-      </Button>
+        <div className="flex justify-center   mt-3  items-center space-x-2">
+          <SearchComponent  className={`flex justify-between border-b-[1px] border-blue-400 p-2 w-[370px] md:max-w-[500px] md:w-[500px]`} />
+     
     </div>
     <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 text-center ' >
       {

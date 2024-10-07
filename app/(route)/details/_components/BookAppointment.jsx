@@ -8,14 +8,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
-import { Button } from '@/components/ui/button'
-import { Calendar } from "@/components/ui/calendar"
+  } from "../../../../components/ui/dialog"
+import { Button } from '../../../../components/ui/button'
+import { Calendar } from "../../../../components/ui/calendar"
 import { CalendarDays, Clock } from 'lucide-react'
 import axios from 'axios'
-import axiosClient from '@/app/_components/GelobalApi' ;
+import axiosClient from '../../../_components/GelobalApi' ;
 
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "../../../../hooks/use-toast"
 
 function BookAppointment({doctor}) {
   const { toast } = useToast()

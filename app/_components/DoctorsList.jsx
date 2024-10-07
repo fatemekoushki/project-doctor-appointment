@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-function DoctorsList({doctorsList , heading ="Popular Doctors"}) {
+function DoctorsList({doctorsList , isFetching ,limit,setLimit, heading ="Popular Doctors"}) {
     
    
   return (
-    <div className='mb-10 px-10' >
+    <div className='mb-10 px-10 h-full' >
       <h2 className='font-bold text-xl' >{heading}</h2>
-      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-4 ' >
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-4 ' >
         {
             doctorsList?.length > 0 ? doctorsList.map((doctor , index)=> (
                 <div key={index} className='border-[1px] rounded-lg p-3 cursor-pointer hover:border-primary hover:shadow-sm transition-all ease-in-out ' >
@@ -33,6 +33,8 @@ function DoctorsList({doctorsList , heading ="Popular Doctors"}) {
             ))
         }
       </div>
+     
+    
     </div>
   )
 }

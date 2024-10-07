@@ -1,4 +1,4 @@
-import axiosClient from '@/app/_components/GelobalApi'
+import axiosClient from '../../../_components/GelobalApi'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'

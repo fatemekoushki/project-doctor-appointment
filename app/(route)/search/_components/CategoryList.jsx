@@ -10,7 +10,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/components/ui/command"
+} from "../../../../components/ui/command"
 import Image from 'next/image';
 import img1 from "../../../../public/assets/doctors.png";
 import img2 from "../../../../public/assets/teeth.png";

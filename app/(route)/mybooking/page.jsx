@@ -1,8 +1,8 @@
 "use client"
 import React, { use, useEffect, useState } from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs"
 import BookingList from './_components/BookingList'
-import axiosClient from '@/app/_components/GelobalApi';
+import axiosClient from '../../_components/GelobalApi';
 import { useQuery } from 'react-query';
 
 const user = localStorage.getItem("user") ;

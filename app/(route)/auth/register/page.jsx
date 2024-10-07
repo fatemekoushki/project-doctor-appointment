@@ -1,13 +1,12 @@
 "use client"
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../../components/ui/button'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import regiterSvg from "../../../../public/register.svg" ;
-import axiosClient from '@/app/_components/GelobalApi';
+import axiosClient from './../../../_components/GelobalApi';
 import { useFormik } from 'formik';
 import { registerSchema } from '../(validations)/validations';
 import { useRouter } from 'next/navigation';
-import { VALID_LOADERS } from 'next/dist/shared/lib/image-config';
 import Cookies from 'universal-cookie';
 import { useMutation, useQueryClient } from 'react-query';
 function Register() {
@@ -15,7 +14,7 @@ function Register() {
   const cookies = new Cookies(null, { path: '/' });
 
   const sendData = async (values) => {  
-    const response = await axiosClient.post("/users" , {data : values})
+    const response = await axiosClient.post("/users" , values)
     return response
     }
 
@@ -24,7 +23,7 @@ function Register() {
         
            //example
              cookies.set('loginToken', 'userlogin')
-               router.push("/")
+               window.location.href = "/"
       
               alert("register success")
            

@@ -1,36 +1,30 @@
 "use client"
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Hero from "./_components/Hero";
 import CategorySearch from "./_components/CategorySearch";
 import DoctorsList from "./_components/DoctorsList";
 import axiosClient from "./_components/GelobalApi";
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-
+import { useState } from "react";
+import LoadeMore from "./_components/LoadMore"
 export default function Home() {
-  const {data} = useQuery("doctorsList" , ()=> 
-    axiosClient.get("/doctors").then((res)=> res.data )
-  )
+   const [limit , setLimit] = useState(4)
+  const { data, error, isFetching } = useQuery(['items', limit], () => axiosClient.get(`/doctors?_limit=${limit}&_page=1`).then((res)=> res.data ) , {keepPreviousData: true} );
+  // const {data , isFetching , isLoading} = useQuery("doctorsList" , ()=> 
+  //   axiosClient.get("/doctors").then((res)=> res.data ) , {keepPreviousData: true}
+  // )
   // const [doctorsList , setDoctorsList]  =useState(data?.data)
 
-console.log(data)
 
- 
-  // useEffect(()=> {
-  //     getDoctors()
-  // } , [])
-
-  // const getDoctors = async ()=> {
-  //     await axiosClient.get("/doctors").then((res)=> setDoctorsList(res.data) )
-  // }
   return (
    
    <div>
+    
     <Hero />
     <CategorySearch />
-    <DoctorsList  doctorsList={data} />
+    <DoctorsList  doctorsList={data} isFetching={isFetching}     />
+    <LoadeMore setLimit={setLimit}  limit={limit}  />
    
+      
    </div>
   
   );
