@@ -6,11 +6,11 @@ export function middleware(request) {
     console.log(isLogged)
     const pathName = request.nextUrl.pathname ;
     if(pathName.startsWith("/details") && !isLogged ){
-        return NextResponse.redirect(new URL('/auth/register', request.url))
+        return NextResponse.redirect(new URL('/register', request.url))
     }
 
 }
 
 export const config = {
-    matcher:[ '/details/:path*' , "/auth/register" ]
+    matcher:[ '/details/:path*' , "/register" ]
   }

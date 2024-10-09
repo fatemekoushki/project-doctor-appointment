@@ -3,15 +3,12 @@ import { Button } from '../../../../components/ui/button'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import regiterSvg from "../../../../public/register.svg" ;
-import axiosClient from './../../../_components/GelobalApi';
+import axiosClient from '../../../_components/GelobalApi';
 import { useFormik } from 'formik';
 import { registerSchema } from '../(validations)/validations';
-import { useRouter } from 'next/navigation';
-import Cookies from 'universal-cookie';
+import Cookies from "js-cookie";
 import { useMutation, useQueryClient } from 'react-query';
 function Register() {
-  const router = useRouter()
-  const cookies = new Cookies(null, { path: '/' });
 
   const sendData = async (values) => {  
     const response = await axiosClient.post("/users" , values)
@@ -20,11 +17,7 @@ function Register() {
 
     const mutation = useMutation(sendData, {  
       onSuccess: () => {  
-        
-           //example
-             cookies.set('loginToken', 'userlogin')
                window.location.href = "/"
-      
               alert("register success")
            
       },  
@@ -59,7 +52,7 @@ function Register() {
       onSubmit: (values, { setSubmitting }) => {  
         mutation.mutate(values);  
         const user = JSON.stringify(values)
-        localStorage.setItem("user" , user)
+        Cookies.set("tokenLogin", user)
 
         setSubmitting(false);  
       } ,

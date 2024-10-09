@@ -4,21 +4,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui
 import BookingList from './_components/BookingList'
 import axiosClient from '../../_components/GelobalApi';
 import { useQuery } from 'react-query';
+import Cookies from "js-cookie";
+  
 
-const user = localStorage.getItem("user") ;
-const User = JSON.parse(user)
 
 function MyBooking() {
-  // const [bookingList , setBookingList] = useState([]);
-  //   console.log(bookingList)
-  //   useEffect( ()=> {
-  //     User && getUserBooking()
-  //   } , [user])
-  //   const getUserBooking = async ()=> {
-  //    await axiosClient.get(`/bookAppointment?${User?.email}`).then((res)=> setBookingList(res.data) )
-  //   };
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    const userInf= Cookies.get("tokenLogin");
+    if (userInf) {
+      const user   = JSON.parse(userInf);
+      setUserInfo(user);
+    }
+  }, []);
+ 
   const {data} = useQuery("bookAppointment" , ()=> 
-    axiosClient.get(`/bookAppointment?${User?.email}`).then((res)=> res.data )
+    axiosClient.get(`/bookAppointment?${userInfo?.email}`).then((res)=> res.data )
   )
 
     // Used To filter User Booking 

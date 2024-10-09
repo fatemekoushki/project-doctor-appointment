@@ -8,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover";
-import Cookies from 'universal-cookie'
+import Cookies from 'js-cookie'
 import { useQuery } from 'react-query'
 import { HiMenuAlt2 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
@@ -16,12 +16,19 @@ import { CgClose } from "react-icons/cg";
 
 
 function Header() {
-    const cookie =  new Cookies()
   const [menuNav, setMenuNav] = useState(false);
     
-    const token = cookie.get("loginToken")
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    const userInf= Cookies.get("tokenLogin");
+    if (userInf) {
+      const user   = JSON.parse(userInf);
+      setUserInfo(user);
+    }
+  }, []);
     const logout = ()=> {
-      cookie.remove("loginToken")
+      Cookies.remove("loginToken")
       window.location.href= "/"
     }
   const menu = [
@@ -56,7 +63,7 @@ function Header() {
       </div>
       <div className='flex flex-row justify-center items-center gap-2' >
           {
-            token? 
+            userInfo? 
             (
               <Popover >
               <PopoverTrigger> <h5 className='bg-primary p-1.5 px-5 rounded-lg text-slate-50' >my panel</h5>   </PopoverTrigger>
@@ -73,7 +80,7 @@ function Header() {
             :
             (
              
-                    <Link href={"/auth/register"} > <p   className='bg-primary p-1.5 px-5 rounded-lg text-slate-50'  >Sing Up</p> </Link>
+                    <Link href={"/register"} > <p   className='bg-primary p-1.5 px-5 rounded-lg text-slate-50'  >Sing Up</p> </Link>
       
                  
             )
