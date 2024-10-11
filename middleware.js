@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
-import { isLoggedIn } from "./actions/authAtions"
 
 export function middleware(request) {
-    const  isLogged = isLoggedIn() ;
-    console.log(isLogged)
-    const pathName = request.nextUrl.pathname ;
-    if(pathName.startsWith("/details") && !isLogged ){
-        return NextResponse.redirect(new URL('/register', request.url))
+    const { pathname } = request.nextUrl;
+    const token = request.cookies.get("tokenLogin");
+    if (pathname.startsWith("/details")) {
+        if (!token?.value) {
+            return NextResponse.redirect(new URL("/register", request.url));
+        }
     }
-
 }
 
 export const config = {
-    matcher:[ '/details/:path*' , "/register" ]
-  }
+    matcher: "/details/:path*"
+};

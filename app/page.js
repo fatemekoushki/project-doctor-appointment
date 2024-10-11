@@ -9,11 +9,8 @@ import LoadeMore from "./_components/LoadMore"
 export default function Home() {
    const [limit , setLimit] = useState(4)
   const { data, error, isFetching } = useQuery(['items', limit], () => axiosClient.get(`/doctors?_limit=${limit}&_page=1`).then((res)=> res.data ) , {keepPreviousData: true} );
-  // const {data , isFetching , isLoading} = useQuery("doctorsList" , ()=> 
-  //   axiosClient.get("/doctors").then((res)=> res.data ) , {keepPreviousData: true}
-  // )
-  // const [doctorsList , setDoctorsList]  =useState(data?.data)
-
+  
+  
 
   return (
    

@@ -6,21 +6,24 @@ import { FaSearch } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { useQuery } from "react-query";
 
-
-
 const SearchComponent = ({ className }) => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [doctors, setDoctors] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const {data} = useQuery("allDoctors" ,async ()=> await axios.get("http://localhost:3000/doctors").then((res)=> res.data ))
- 
+  const { data } = useQuery(
+    "allDoctors",
+    async () =>
+      await axios.get("http://localhost:3000/doctors").then((res) => res.data)
+  );
+
   //Filtering products based on search
   useEffect(() => {
     if (searchQuery && searchQuery?.length > 0) {
       const doctorsList = [...data];
-      const filteredDoctors = doctorsList?.filter((d) => d?.title.includes(searchQuery)
+      const filteredDoctors = doctorsList?.filter((d) =>
+        d?.title.includes(searchQuery)
       );
       setDoctors(filteredDoctors ?? []);
     } else {
