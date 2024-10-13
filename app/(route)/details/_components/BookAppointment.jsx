@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -15,10 +15,11 @@ import { CalendarDays, Clock } from "lucide-react";
 import axios from "axios";
 import axiosClient from "../../../_components/GelobalApi";
 import Cookies from "js-cookie";
-
 import { useToast } from "../../../../hooks/use-toast";
+import useAppointmentStore from "../../../../hooks/zustand/AppointmentZustand";
 
 function BookAppointment({ doctor }) {
+  const { appointments, addAppointment } = useAppointmentStore();
   const { toast } = useToast();
   const [date, setDate] = useState(new Date());
   const [timeSlot, setTimeSlot] = useState();
@@ -68,12 +69,9 @@ function BookAppointment({ doctor }) {
       doctorName: doctor.name,
       doctorImg: doctor.img,
     };
-    axiosClient.post("bookAppointment", { data: data }).then((res) => {
-      if (res) {
-        toast({
-          description: "Booking Confirmation Send On Email",
-        });
-      }
+    addAppointment(data);
+    toast({
+      description: "Booking Confirmation Send On Email",
     });
   };
   return (

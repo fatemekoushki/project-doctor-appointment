@@ -1,16 +1,10 @@
 const { default: axios } = require("axios");
 
 const axiosClient = axios.create({
-    baseURL : "http://localhost:3000" ,
-    headers : {
-        "Content-Type" : "application-json" ,
-        
-    }
-})
+  baseURL: "https://doctors-api.liara.run",
+  headers: {
+    "Content-Type": "application-json",
+  },
+});
 
-
-export default axiosClient ;
-
-
-
-
+export default axiosClient;

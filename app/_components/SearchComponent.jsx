@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { useQuery } from "react-query";
+import axiosClient from "./GelobalApi";
 
 const SearchComponent = ({ className }) => {
   const router = useRouter();
@@ -14,8 +15,7 @@ const SearchComponent = ({ className }) => {
 
   const { data } = useQuery(
     "allDoctors",
-    async () =>
-      await axios.get("http://localhost:3000/doctors").then((res) => res.data)
+    async () => await axiosClient.get("/doctors").then((res) => res.data)
   );
 
   //Filtering products based on search

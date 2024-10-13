@@ -6,23 +6,26 @@ import CancelAppointment from "./CancelAppointment";
 import axiosClient from "../../../_components/GelobalApi";
 import { toast } from "../../../../hooks/use-toast";
 import { useMutation, useQueryClient } from "react-query";
+import useAppointmentStore from "../../../../hooks/zustand/AppointmentZustand";
 
 function BookingList({ bookingList, expired }) {
+  const { removeAppointment } = useAppointmentStore();
+
   const queryClient = useQueryClient();
 
-  const { mutate: onDeleteBooking } = useMutation(
-    (item) => {
-      return axiosClient.delete(`/bookAppointment/${item.id}`);
-    },
-    {
-      onSuccess: () => {
-        toast({
-          description: "Booking Delete Successfully!",
-        });
-        queryClient.invalidateQueries(["bookAppointment"]);
-      },
-    }
-  );
+  // const { mutate: onDeleteBooking } = useMutation(
+  //   (item) => {
+  //     return axiosClient.delete(`/bookAppointment/${item.id}`);
+  //   },
+  //   {
+  //     onSuccess: () => {
+  //       toast({
+  //         description: "Booking Delete Successfully!",
+  //       });
+  //       queryClient.invalidateQueries(["bookAppointment"]);
+  //     },
+  //   }
+  // );
 
   return (
     <div>
@@ -30,7 +33,7 @@ function BookingList({ bookingList, expired }) {
         bookingList.map((item, index) => (
           <div className="flex gap-4 items-center border p-5 m-3 rounded-lg">
             <Image
-              src={item.data.doctorImg}
+              src={item.doctorImg}
               width={70}
               height={70}
               alt="img-doctor"
@@ -39,10 +42,10 @@ function BookingList({ bookingList, expired }) {
 
             <div className="flex flex-col gap-2 w-full">
               <h2 className="font-bold text-[18px]  flex items-center justify-between">
-                {item.data.doctorName}
+                {item.doctorName}
                 {!expired && (
                   <CancelAppointment
-                    onClickContinue={() => onDeleteBooking(item)}
+                    onClickContinue={() => removeAppointment(item)}
                   />
                 )}
               </h2>
@@ -51,7 +54,7 @@ function BookingList({ bookingList, expired }) {
               </h2>
               <h2 className="flex gap-2">
                 <Calendar className="text-primary h-5 w-5" /> Appointment On :{" "}
-                {moment(item.data.date).format("DD-MM-YYYY")}{" "}
+                {moment(item.date).format("DD-MM-YYYY")}{" "}
               </h2>
               <h2 className="flex gap-2">
                 <Clock className="text-primary h-5 w-5" /> At Time : Time{" "}

@@ -10,9 +10,11 @@ import BookingList from "./_components/BookingList";
 import axiosClient from "../../_components/GelobalApi";
 import { useQuery } from "react-query";
 import Cookies from "js-cookie";
+import useAppointmentStore from "../../../hooks/zustand/AppointmentZustand";
 
 function MyBooking() {
   const [userInfo, setUserInfo] = useState([]);
+  const { appointments, addAppointment } = useAppointmentStore();
 
   useEffect(() => {
     const userInf = Cookies.get("tokenLogin");
@@ -22,20 +24,22 @@ function MyBooking() {
     }
   }, []);
 
-  const { data } = useQuery("bookAppointment", () =>
-    axiosClient
-      .get(`/bookAppointment?${userInfo?.email}`)
-      .then((res) => res.data)
+  const data = appointments?.filter(
+    (appointment) => appointment?.email === userInfo.email
   );
+  // const { data } = useQuery("bookAppointment", () =>
+  //   axiosClient
+  //     .get(`/bookAppointment?${userInfo?.email}`)
+  //     .then((res) => res.data)
+  // );
 
   // Used To filter User Booking
   const filterUserBooking = (type) => {
     const result = data?.filter((item) =>
       type == "upcoming"
-        ? new Date(item.data.date) >= new Date()
-        : new Date(item.data.date) <= new Date()
+        ? new Date(item.date) >= new Date()
+        : new Date(item.date) <= new Date()
     );
-    console.log(result);
     return result;
   };
 

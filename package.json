@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "backend": "json-server --watch db.json --port 3000",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -24,7 +23,6 @@
     "date-fns": "^3.6.0",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",
-    "json-server": "^1.0.0-beta.2",
     "lucide-react": "^0.438.0",
     "moment": "^2.30.1",
     "next": "14.2.7",
@@ -35,12 +33,14 @@
     "react-query": "^3.39.3",
     "react-spinners": "^0.14.1",
     "resend": "^4.0.0",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "universal-cookie": "^7.2.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^3.0.0"
   },
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "postcss": "^8",
     "react-email": "3.0.1",
     "tailwindcss": "^3.4.1",

@@ -26,7 +26,7 @@ function Header() {
     }
   }, []);
   const logout = () => {
-    Cookies.remove("loginToken");
+    Cookies.remove("tokenLogin");
     window.location.href = "/";
   };
   const menu = [
