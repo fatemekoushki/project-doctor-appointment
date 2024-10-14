@@ -59,7 +59,7 @@ function Register() {
     <div className="h-screen  flex flex-col md:flex-row ">
       <form
         onSubmit={form.handleSubmit}
-        className="flex flex-col   mt-20 items-center  text-center min-w-[200px] gap-4 p-5 rounded-lg"
+        className="flex flex-col  flex-1 mt-20 items-center  text-center min-w-[200px] gap-4 p-5 rounded-lg"
       >
         <input
           onChange={form.handleChange}
@@ -95,7 +95,7 @@ function Register() {
         {form.errors.password && form.errors.password}
         <Button type="submit"> Submit</Button>
       </form>
-      <div className="mt-5  ">
+      <div className="flex-1 ">
         <Image width={700} height={700} src={registerSvg} />
       </div>
     </div>

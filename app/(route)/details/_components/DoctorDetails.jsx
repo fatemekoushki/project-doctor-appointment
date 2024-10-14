@@ -41,10 +41,10 @@ function DoctorDetails({ doctor }) {
         {/* Doctor Image  */}
         <div className="">
           <Image
-            quality={100}
+            quality={99}
             src={doctor.img}
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             alt="doctor-img"
             className="rounded-lg h-[280px] w-full object-cover "
           />

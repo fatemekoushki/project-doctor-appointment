@@ -27,11 +27,6 @@ function MyBooking() {
   const data = appointments?.filter(
     (appointment) => appointment?.email === userInfo.email
   );
-  // const { data } = useQuery("bookAppointment", () =>
-  //   axiosClient
-  //     .get(`/bookAppointment?${userInfo?.email}`)
-  //     .then((res) => res.data)
-  // );
 
   // Used To filter User Booking
   const filterUserBooking = (type) => {

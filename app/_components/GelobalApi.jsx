@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 const axiosClient = axios.create({
-  baseURL: "https://doctors-api.liara.run",
+  baseURL: "https://projects-backend.liara.run",
   headers: {
     "Content-Type": "application-json",
   },
